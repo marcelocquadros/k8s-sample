@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-consumer-deployment
+  labels:
+    app: spring-boot-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-consumer
+  template:
+    metadata:
+      labels:
+        app: spring-boot-consumer
+    spec:
+      containers:
+      - name: spring-boot-consumer
+        image: marceloquadros/spring-boot-consumer
+        ports:
+        - containerPort: 8080
