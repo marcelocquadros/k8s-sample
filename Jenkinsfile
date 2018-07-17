@@ -8,7 +8,13 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        git(url: 'https://github.com/marcelocquadros/k8s-sample.git', branch: 'master')
+        step('clone'){
+          git(url: 'https://github.com/marcelocquadros/k8s-sample.git', branch: 'master')
+        }
+        step('build') {
+          steps {
+            sh 'mvn clean install'
+          }
       }
     }
   }
