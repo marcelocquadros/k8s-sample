@@ -7,12 +7,22 @@ pipeline {
 
   }
   stages {
-    stage('Init') {
+    stage('Build') {
       steps {
         echo 'Starting...'
-        sh '''echo ${PATH}
-cd consumer
-mvn clean install'''
+        sh '''echo ${PATH} 
+cd consumer 
+mvn clean install -DskipTests'''
+      }
+    }
+    stage('UnitTests') {
+      steps {
+        sh 'mvn test'
+      }
+    }
+    stage('Build Image') {
+      steps {
+        sh 'mvn dockerfile:build'
       }
     }
   }
