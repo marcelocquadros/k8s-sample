@@ -11,7 +11,7 @@ pipeline {
       steps {
         echo 'Starting...'
         sh '''echo ${PATH}
-
+cd consumer
 mvn clean install'''
       }
     }
