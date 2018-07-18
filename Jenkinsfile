@@ -21,5 +21,10 @@ mvn clean install -DskipTests'''
 mvn test'''
       }
     }
+    stage('Publish Test Reports') {
+      steps {
+        junit 'consumer/target/surefire-reports/**/*.xml'
+      }
+    }
   }
 }
