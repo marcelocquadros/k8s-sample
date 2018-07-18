@@ -8,17 +8,35 @@ pipeline {
   }
   stages {
     stage('Build') {
-      steps {
-        echo 'Starting...'
-        sh '''echo ${PATH} 
+      parallel {
+        stage('Build') {
+          steps {
+            echo 'Starting...'
+            sh '''echo ${PATH} 
 cd consumer 
 mvn clean install -DskipTests'''
+          }
+        }
+        stage('teste') {
+          steps {
+            echo 'teste'
+          }
+        }
       }
     }
     stage('UnitTests') {
-      steps {
-        sh '''cd consumer
+      parallel {
+        stage('UnitTests') {
+          steps {
+            sh '''cd consumer
 mvn test'''
+          }
+        }
+        stage('print') {
+          steps {
+            echo 'teste2'
+          }
+        }
       }
     }
     stage('Publish Test Reports') {
