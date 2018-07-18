@@ -10,6 +10,9 @@ pipeline {
     stage('Init') {
       steps {
         echo 'Starting...'
+        sh '''echo ${PATH}
+
+mvn clean install'''
       }
     }
   }
