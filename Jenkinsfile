@@ -17,12 +17,14 @@ mvn clean install -DskipTests'''
     }
     stage('UnitTests') {
       steps {
-        sh 'mvn test'
+        sh '''cd consumer
+mvn test'''
       }
     }
     stage('Build Image') {
       steps {
-        sh 'mvn dockerfile:build'
+        sh '''cd consumer
+mvn dockerfile:build'''
       }
     }
   }
