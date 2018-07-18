@@ -21,11 +21,5 @@ mvn clean install -DskipTests'''
 mvn test'''
       }
     }
-    stage('Build Image') {
-      steps {
-        sh '''cd consumer
-mvn dockerfile:build'''
-      }
-    }
   }
 }
